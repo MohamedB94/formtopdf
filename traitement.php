@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // récupération des données avant verification
     function getPostData($key)
     {
-        return isset($_POST[$key]) ? mb_convert_encoding($_POST[$key], 'UTF-8'): '';
+        return isset($_POST[$key]) ? mb_convert_encoding($_POST[$key], 'UTF-8', 'auto'): '';
     }
 
     $name = getPostData('name');
@@ -49,48 +49,48 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // definition de la police
         $pdf->SetFont('Arial', '', 12);
-        $pdf->Cell(200, 10, "Récapitulatif de l'entretien", 0, 1, 'C');
+        $pdf->Cell(200, 10, utf8_decode("Récapitulatif de l'entretien"), 0, 1, 'C');
         $pdf->Ln(10);
 
         // ajout des données
-        $pdf->Cell(40, 10, "Prénom : ");
-        $pdf->Cell(0, 10, $username, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Prénom : "));
+        $pdf->Cell(0, 10, utf8_decode($username), 0, 1);
 
-        $pdf->Cell(40, 10, "Nom : ");
-        $pdf->Cell(0, 10, $name, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Nom : "));
+        $pdf->Cell(0, 10, utf8_decode($name), 0, 1);
 
-        $pdf->Cell(40, 10, "Poste : ");
-        $pdf->Cell(0, 10, $position, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Poste : "));
+        $pdf->Cell(0, 10, utf8_decode($position), 0, 1);
 
-        $pdf->Cell(40, 10, "Experience : ");
-        $pdf->MultiCell(0, 10, $experience, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Experience : "));
+        $pdf->MultiCell(0, 10, utf8_decode($experience), 0, 1);
 
-        $pdf->Cell(40, 10, "Retour : ");
-        $pdf->MultiCell(0, 10, $feedback, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Retour : "));
+        $pdf->MultiCell(0, 10, utf8_decode($feedback), 0, 1);
 
-        $pdf->Cell(40, 10, "Points forts : ");
-        $pdf->MultiCell(0, 10, $strenghts, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Points forts : "));
+        $pdf->MultiCell(0, 10, utf8_decode($strenghts), 0, 1);
 
-        $pdf->Cell(40, 10, "Points faibles : ");
-        $pdf->MultiCell(0, 10, $weaknesses, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Points faibles : "));
+        $pdf->MultiCell(0, 10, utf8_decode($weaknesses), 0, 1);
 
-        $pdf->Cell(40, 10, "Motivation : ");
-        $pdf->MultiCell(0, 10, $motivation, 0, 1);
+        $pdf->Cell(40, 10, utf8_decode("Motivation : "));
+        $pdf->MultiCell(0, 10, utf8_decode($motivation), 0, 1);
 
-        $pdf->Cell(70, 10, "Situation difficile surmontée : ");
-        $pdf->MultiCell(0, 10, $challenges, 0, 1);
+        $pdf->Cell(70, 10, utf8_decode("Situation difficile surmontée : "));
+        $pdf->MultiCell(0, 10, utf8_decode($challenges), 0, 1);
 
-        $pdf->Cell(70, 10, "Où vous voyez-vous dans 5 ans : ");
-        $pdf->MultiCell(0, 10, $future, 0, 1);
+        $pdf->Cell(70, 10, utf8_decode("Où vous voyez-vous dans 5 ans : "));
+        $pdf->MultiCell(0, 10, utf8_decode($future), 0, 1);
 
         //accord de confidentialité
         $pdf->Ln(10);
-        $pdf->Cell(200, 10, "Accord de confidentialité", 0, 1, 'C');
+        $pdf->Cell(200, 10, utf8_decode("Accord de confidentialité"), 0, 1, 'C');
         $pdf->Ln(5);
-        $pdf->Multicell(0, 10, "Je, soussigne(é) {$name} {$username}, déclare avoir pris connaissance des informations fournies lors de l'entretien." 
+        $pdf->Multicell(0, 10, utf8_decode("Je, soussigne(é) {$name} {$username}, déclare avoir pris connaissance des informations fournies lors de l'entretien." 
          . "Je m'engage à ne pas divulguer ces informations confidentielles échangées lors de cet entretien."
         . "Je comprends que ces informations sont strictement destinées à des fins professionnelles et doivent être traitées avec la plus grande confidentialité."
-        . "\n\nSignature : ____________________________\nDate : {$dateDuJour}");
+        . "\n\nSignature : ____________________________\nDate : {$dateDuJour}"));
 
         // generation du pdf
 
